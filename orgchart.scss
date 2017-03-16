@@ -1,0 +1,213 @@
+// TODO: make this use em's not pixels
+$line-color: #aaa;
+$line-width: 2px;
+$node-margin: 20px;
+$node-width: 140px;
+$break-small: 991px;
+@mixin line {
+    content: '';
+    position: absolute;
+    background-color: $line-color;
+}
+
+@mixin line-left {
+    @include line;
+    width: $line-width;
+    height: calc(100% + #{$node-margin} + #{$line-width});
+    left: calc(50% - #{$node-width / 2} - #{$node-margin / 2});
+    top: -$line-width / 2;
+}
+
+@mixin line-left-first {
+    @include line-left;
+    height: calc(100% + #{$node-margin * 1.5} + #{$line-width});
+    top: -$node-margin/2 - $line-width/2;
+}
+
+@mixin line-left-only {
+    @include line-left;
+    height: calc(50% + #{$node-margin * .5} + #{$line-width});
+    top: -$node-margin/2 - $line-width/2;
+}
+
+@mixin list-line-left {
+    @include line;
+    width: $node-margin / 2;
+    height: $line-width;
+    top: calc(50%);
+    left: calc(50% - #{$node-width / 2} - #{$node-margin / 2});
+}
+
+@mixin list-line-top {
+    @include line;
+    width: $node-width / 2;
+    height: $line-width;
+    bottom: -$node-margin / 2;
+    left: calc(50% - #{$node-width / 2});
+}
+
+.org-tree {
+    @media screen and (max-width: $break-small) {
+        >.row {
+            margin-left: -50%;
+        }
+         :not(.list)>.item>.child {
+            .node:not(.root) {
+                &:before {
+                    @include line-left
+                }
+                &::after {
+                    @include list-line-left;
+                }
+            }
+        }
+         :not(.list)>.item:last-child>.child {
+            .node:not(.root):before {
+                height: calc(50% + #{$line-width});
+            }
+        }
+         :not(.list)>.item:only-child>.child {
+            .node:not(.root):before {
+                @include line-left-only;
+            }
+        }
+    }
+    .node {
+        width: $node-width;
+        padding: 15px;
+        border: 1px solid $line-color;
+        border-radius: 2px;
+        position: relative;
+    }
+    .item {
+        display: flex;
+        flex-direction: column;
+    }
+    .list-parent::before {
+        @include list-line-top
+    }
+    .parent {
+        position: relative;
+        display: flex;
+        margin-bottom: $node-margin;
+        @media screen and (max-width: $break-small) {
+            margin-bottom: 0px;
+            display: block;
+            &:before {
+                @include list-line-top
+            }
+        }
+        &::after {
+            // Builds the line down to children 
+            @include line;
+            width: $line-width;
+            height: $node-margin / 2;
+            bottom: 0;
+            left: 50%;
+            background-color: $line-color;
+            transform: translateY(100%);
+        }
+    }
+    .row {
+        @media screen and (max-width: $break-small) {
+            margin-left: $node-margin;
+            margin-right: 0px;
+            &.list {
+                margin-left: 0px;
+            }
+            .node {
+                margin-bottom: $node-margin;
+            }
+        }
+        .item {
+            // Styles for standard pyramid top lines to parent
+            &:first-child>.child {
+                &::after {
+                    left: 50%;
+                    width: 50%;
+                    @media screen and (max-width: $break-small) {
+                        display: none;
+                    }
+                }
+                .node:not(.root)::before {
+                    @media screen and (max-width: $break-small) {
+                        @include line-left-first;
+                    }
+                }
+            }
+            &:last-child>.child::after {
+                width: calc(50% + #{$line-width});
+            }
+            &:only-child>.child::after {
+                width: 0px;
+            }
+            @media screen and (max-width: $break-small) {
+                &:not(:last-child):before {
+                    @include line-left;
+                }
+            }
+        }
+    }
+     :not(.list)>.item>.child {
+        &::before {
+            @include line;
+            left: 50%;
+            top: 0;
+            transform: translateY(-100%);
+            width: $line-width;
+            height: $node-margin / 2;
+            @media screen and (max-width: $break-small) {
+                display: none;
+            }
+        }
+        &::after {
+            @include line;
+            left: 0;
+            top: -$node-margin / 2;
+            transform: translateY(-100%);
+            height: $line-width;
+            width: 100%;
+            @media screen and (max-width: $break-small) {
+                display: none;
+            }
+        }
+    }
+    .list {
+        margin-left: $node-margin;
+        .list-parent {
+            margin-bottom: 0px;
+            display: block;
+        }
+        .item {
+            &:first-child>.child>.node::before,
+            &:first-child>.child>.parent>.node::before{
+                @include line-left-first;
+            }
+            &:last-child>.child .node::before,
+            &:last-child>.child>.parent>.node::before {
+                height: calc(50% + #{$line-width});
+            }
+            &:only-child>.child::before {
+                @include line-left-only;
+                height: calc(50% + #{$line-width});
+            }
+            &:not(:last-child) .list:before {
+                @include line-left;
+            }
+        }
+        .child {
+            .parent>.node::before {
+                @include line-left;
+            }
+            .node {
+                margin-bottom: $node-margin;
+                &::after {
+                    @include list-line-left;
+                }
+                &::before {
+                    @include line-left
+                }
+            }
+        }
+    }
+}

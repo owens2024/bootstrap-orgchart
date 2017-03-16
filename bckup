@@ -1,0 +1,34 @@
+$breakpoints: (99999px 1) (1199px 2);
+@each $breakpoint in $breakpoints {
+    $minWidth: nth($breakpoint, 1);
+    $col: nth($breakpoint, 2);
+    @media screen and (max-width: $minWidth) {
+        @for $i from 1 through $col {
+            .row.child-width-#{$i} {
+                >.row {
+                    margin-left: -50%;
+                }
+                 :not(.list)>.item>.child {
+                    .node:not(.root) {
+                        &:before {
+                            @include line-left
+                        }
+                        &::after {
+                            @include list-line-left;
+                        }
+                    }
+                }
+                 :not(.list)>.item:last-child>.child {
+                    .node:not(.root):before {
+                        height: calc(50% + #{$line-width});
+                    }
+                }
+                 :not(.list)>.item:only-child>.child {
+                    .node:not(.root):before {
+                        @include line-left-only;
+                    }
+                }
+            }
+        }
+    }
+}

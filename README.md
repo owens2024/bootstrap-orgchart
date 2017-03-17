@@ -1,26 +1,16 @@
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+Bootstrap 3.0 Org-Chart
+=======================
 
+*This is a work in progress.*
 
-Hi there! Welcome to Cloud9 IDE!
+This project spawned because I needed an org chart that worked responsively.  Since org charts tend to be quite wide, this is a particular challenge.
 
-To get you started, we included a small hello world application.
+This code uses JS to create a basic DOM structure from a simple JSON object that describes the organization.  CSS pseudo-elements are used to draw the lines between the nodes.
 
-1) Open the hello-world.html file
-
-2) Click on the Preview button to open a live preview pane
-
-3) Make some changes to the file, save, watch the preview, and have fun!
-
-Happy coding!
-The Cloud9 IDE team
-
-
-## Support & Documentation
-
-Visit http://docs.c9.io for documentation, or http://support.c9.io for support.
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+To-dos
+------
+* Demo page
+* Multiple breakpoints
+* Clean SCSS code to remove need for 'list' class
+* Enable custom node styling
+* Enable node collapsing

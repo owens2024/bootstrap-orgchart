@@ -1,0 +1,39 @@
+[{
+    "label": "President",
+    "children": [{
+        "label": "Vice President of Administration",
+        "children": [{
+            "label": "Director of Finance"
+        }, {
+            "label": "Director of Human Resources"
+        }]
+    }, {
+        "label": "Vice President of Operations",
+        "children": [{
+            "label": "Director of Distribution"
+        }, {
+            "label": "Director of Customer Service",
+            "children": [{
+                "label": "Technical Support Manager"
+            }]
+        }]
+    }, {
+        "label": "Vice President of Merchandising",
+        "children": [{
+            "label": "Director of Purchasing",
+            "children": [
+                {"label": "Internal Purchasing Manager"}]
+        }, {
+            "label": "Director of Appliances"
+        }, {
+            "label": "Director of Clothing",
+            "children": [{
+                "label": "Womens Clothing Planner"
+            }, {
+                "label": "Mens Clothing Planner"
+            }]
+        }, {
+            "label": "Product Information Coordinator"
+        }]
+    }]
+}]

@@ -1,44 +1,4 @@
 /* global $ */
-var dummyData = [{
-    label: 'President',
-    children: [{
-        label: 'Vice President of Administration',
-        children: [{
-            label: 'Director of Finance'
-        }, {
-            label: 'Director of Human Resources'
-        }]
-    }, {
-        label: 'Vice President of Operations',
-        children: [{
-            label: 'Director of Distribution'
-        }, {
-            label: 'Director of Customer Service',
-            children: [{
-                label: 'Technical Support Manager'
-            }]
-        }]
-    }, {
-        label: 'Vice President of Merchandising',
-        children: [{
-            label: 'Director of Purchasing',
-            children: [
-                {label: 'Internal Purchasing Manager'}]
-        }, {
-            label: 'Director of Private Label'
-        }, {
-            label: 'Director of Planning',
-            children: [{
-                label: 'Off-road Demand Planner'
-            }, {
-                label: 'Cruiser Demand Planner'
-            }]
-        }, {
-            label: 'Product Information Coordinator'
-        }]
-    }]
-}];
-
 var OrgTree = (function() {
     var publicAPI = {};
 

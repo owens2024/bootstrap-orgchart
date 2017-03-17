@@ -9,7 +9,6 @@ $break-small: 991px;
     position: absolute;
     background-color: $line-color;
 }
-
 @mixin line-left {
     @include line;
     width: $line-width;
@@ -17,7 +16,6 @@ $break-small: 991px;
     left: calc(50% - #{$node-width / 2} - #{$node-margin / 2});
     top: -$line-width / 2;
 }
-
 @mixin line-left-first {
     @include line-left;
     height: calc(100% + #{$node-margin * 1.5} + #{$line-width});

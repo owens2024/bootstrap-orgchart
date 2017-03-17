@@ -47,31 +47,6 @@ $break-small: 991px;
 }
 
 .org-tree {
-    @media screen and (max-width: $break-small) {
-        >.row {
-            margin-left: -50%;
-        }
-         :not(.list)>.item>.child {
-            .node:not(.root) {
-                &:before {
-                    @include line-left
-                }
-                &::after {
-                    @include list-line-left;
-                }
-            }
-        }
-         :not(.list)>.item:last-child>.child {
-            .node:not(.root):before {
-                height: calc(50% + #{$line-width});
-            }
-        }
-         :not(.list)>.item:only-child>.child {
-            .node:not(.root):before {
-                @include line-left-only;
-            }
-        }
-    }
     .node {
         width: $node-width;
         padding: 15px;
@@ -90,13 +65,6 @@ $break-small: 991px;
         position: relative;
         display: flex;
         margin-bottom: $node-margin;
-        @media screen and (max-width: $break-small) {
-            margin-bottom: 0px;
-            display: block;
-            &:before {
-                @include list-line-top
-            }
-        }
         &::after {
             // Builds the line down to children 
             @include line;
@@ -109,16 +77,6 @@ $break-small: 991px;
         }
     }
     .row {
-        @media screen and (max-width: $break-small) {
-            margin-left: $node-margin;
-            margin-right: 0px;
-            &.list {
-                margin-left: 0px;
-            }
-            .node {
-                margin-bottom: $node-margin;
-            }
-        }
         .item {
             // Styles for standard pyramid top lines to parent
             &:first-child>.child {
@@ -129,22 +87,12 @@ $break-small: 991px;
                         display: none;
                     }
                 }
-                .node:not(.root)::before {
-                    @media screen and (max-width: $break-small) {
-                        @include line-left-first;
-                    }
-                }
             }
             &:last-child>.child::after {
                 width: calc(50% + #{$line-width});
             }
             &:only-child>.child::after {
                 width: 0px;
-            }
-            @media screen and (max-width: $break-small) {
-                &:not(:last-child):before {
-                    @include line-left;
-                }
             }
         }
     }
@@ -156,9 +104,6 @@ $break-small: 991px;
             transform: translateY(-100%);
             width: $line-width;
             height: $node-margin / 2;
-            @media screen and (max-width: $break-small) {
-                display: none;
-            }
         }
         &::after {
             @include line;
@@ -167,9 +112,6 @@ $break-small: 991px;
             transform: translateY(-100%);
             height: $line-width;
             width: 100%;
-            @media screen and (max-width: $break-small) {
-                display: none;
-            }
         }
     }
     .list {
@@ -180,7 +122,7 @@ $break-small: 991px;
         }
         .item {
             &:first-child>.child>.node::before,
-            &:first-child>.child>.parent>.node::before{
+            &:first-child>.child>.parent>.node::before {
                 @include line-left-first;
             }
             &:last-child>.child .node::before,
@@ -206,6 +148,63 @@ $break-small: 991px;
                 }
                 &::before {
                     @include line-left
+                }
+            }
+        }
+    }
+   @media screen and (max-width: $break-small) {
+        >.row {
+            margin-left: -50%;
+        }
+         .row {
+            margin-left: $node-margin;
+            margin-right: 0px;
+            &.list {
+                margin-left: 0px;
+            }
+            .item {
+                &:first-child:not(:only-child)>.child {
+                    .node:not(.root)::before {
+                        @include line-left-first;
+                    }
+                }
+                &:not(:last-child):before {
+                    @include line-left;
+                }
+            }
+            .node {
+                margin-bottom: $node-margin;
+            }
+        }
+        .parent {
+            margin-bottom: 0px;
+            display: block;
+            &:before {
+                @include list-line-top
+            }
+        }
+         :not(.list) {
+            >.item>.child {
+                &:before, &:after {
+                    display: none;
+                }
+                .node:not(.root) {
+                    &:before {
+                        @include line-left
+                    }
+                    &::after {
+                        @include list-line-left;
+                    }
+                }
+            }
+            >.item:last-child:not(:only-child)>.child {
+                .node:not(.root):before {
+                    height: calc(50% + #{$line-width});
+                }
+            }
+            >.item:only-child>.child {
+                .node:not(.root):before {
+                    @include line-left-only;
                 }
             }
         }

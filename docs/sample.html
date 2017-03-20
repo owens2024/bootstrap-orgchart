@@ -13,7 +13,7 @@
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
   
-  <script src="src/orgchart.js"></script>
+  <script src="../src/orgchart.js"></script>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 $(document).ready(function(){
   $.ajax({
   dataType: "json",
-  url: "sample.json"}).done( function( data ) {
+  url: "../sample.json"}).done( function( data ) {
     OrgTree.makeOrgTree($('#tree'), data);
   });
 });

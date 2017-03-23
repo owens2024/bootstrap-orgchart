@@ -26,20 +26,21 @@ var OrgTree = (function() {
 
     function getNode(node, level, noParent, baseCol, width) {
         var sublevel,
-            self = $('<div class="item col-md-' + level + '"  data-width="' + width + '">');
+            self = $('<div class="item col-lg-' + level + '"  data-width="' + width + '">');
+        if(width > 30) {
+            self.addClass('col-md-'+level);
+        }
 
         if (node.children) {
 
             var childRow = $('<div class="row">');
             baseCol = Math.floor(baseCol / node.children.length);
-            childRow.addClass('child-width-'+baseCol);
+            self.addClass('child-width-'+baseCol);
+            self.append(makeNode(node, true, !noParent));
             if (baseCol < this.options.minWidth) {
-                self.append(makeNode(node, true, !noParent, 'list-parent'));
-                childRow.addClass('list').removeClass('row');
                 sublevel = this.options.baseLevel;
             }
             else {
-                self.append(makeNode(node, true, !noParent, ''));
                 sublevel = Math.floor(this.options.baseLevel / node.children.length);
                 if (sublevel == 0) {
                     sublevel = 1;
@@ -52,31 +53,30 @@ var OrgTree = (function() {
             self.append(childRow);
         }
         else {
-            self.append(makeNode(node, false, !noParent, ''));
+            self.append(makeNode(node, false, !noParent));
         }
         return self;
     }
 
-    function makeNode(node, isParent, isChild, addlParentClass) {
+    function makeNode(node, isParent, isChild) {
 
         var container, mainItem = $(`
         <div class="node center-block">
                         ${node.label}
                     </div>
 `);
-        if (!isChild) {
-            mainItem.addClass('root');
-        }
+
         if (isParent) {
-            container = $(`<div class="parent ${addlParentClass}">`);
+            container = $(`<div class="parent">`);
             mainItem = container.append(mainItem);
 
         }
-        //if (isChild) {
         container = $('<div class="child">');
+        if (!isChild) {
+            container.addClass('root');
+        }
         container.append(mainItem);
         mainItem = container.append(mainItem);
-        //}
         return mainItem;
     }
     return publicAPI;

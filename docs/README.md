@@ -25,8 +25,5 @@ Usage
 
 To-dos
 ------
-* Demo page
-* Multiple breakpoints
-* Clean SCSS code to remove need for 'list' class
 * Enable custom node styling
 * Enable node collapsing

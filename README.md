@@ -9,7 +9,7 @@ This code uses JS to create a basic DOM structure from a simple JSON object that
 
 Demo
 ----
-[Simple Demo](sample.html)
+[Simple Demo](https://owens2024.github.io/bootstrap-orgchart/sample.html)
 
 Requirements
 ------------
@@ -25,8 +25,5 @@ Usage
 
 To-dos
 ------
-* Demo page
-* Multiple breakpoints
-* Clean SCSS code to remove need for 'list' class
 * Enable custom node styling
 * Enable node collapsing

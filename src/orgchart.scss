@@ -2,6 +2,7 @@ $line-color: #aaa;
 $line-width: 2px;
 $node-margin: 20px;
 $node-width: 140px;
+
 @mixin line {
     content: '';
     position: absolute;

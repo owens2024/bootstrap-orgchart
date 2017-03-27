@@ -5,7 +5,12 @@ var OrgTree = (function() {
     this.options = {
         baseClass: 'org-tree',
         baseLevel: 12,
-        minWidth: 2
+        minWidth: 2,
+        renderNode: function(node){
+            return `<div class="node center-block">
+                        ${node.label}
+                    </div>`;
+        }
     };
 
     publicAPI.init = function(options) {
@@ -60,11 +65,8 @@ var OrgTree = (function() {
 
     function makeNode(node, isParent, isChild) {
 
-        var container, mainItem = $(`
-        <div class="node center-block">
-                        ${node.label}
-                    </div>
-`);
+        var container;
+        var mainItem = $(this.options.renderNode(node));
 
         if (isParent) {
             container = $(`<div class="parent">`);

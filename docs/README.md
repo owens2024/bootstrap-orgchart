@@ -13,6 +13,7 @@ between the nodes.
 Demo
 ----
 [Simple Demo](sample.html)
+
 [Custom Demo](custom.html)
 
 Requirements
@@ -56,10 +57,10 @@ To override the defualt options call `OrgTree.setOptions(options)` where options
 is an object with any of the following properties.
 ```javascript
 {
-    baseClass: 'org-tree',
-    baseLevel: 12,
-    minWidth: 2,
-    renderNode: function(node){
+    "baseClass": "org-tree",
+    "baseLevel": 12,
+    "minWidth": 2,
+    "renderNode": function(node){
         return `<div class="node center-block">
                     ${node.label}
                 </div>`;
@@ -87,7 +88,7 @@ may be specified in the structure that can be referenced in the function.  See
 is best to change the `$node-width` variable in orgchart.scss and to recompile
 the CSS.
 
-### `OrgTree.makeOrgTree(element, data)`
+### OrgTree.makeOrgTree
 To render the tree, call `OrgTree.makeOrgTree(element, data)` where element is 
 a jQuery reference to the containing element and data is a Javascript object
 containing the data.

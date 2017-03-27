@@ -1,38 +1,55 @@
 [{
     "label": "President",
+    "name": "John Doe",
     "children": [{
+        "name" : "Jane Smith",
         "label": "Vice President of Administration",
         "children": [{
+            "name": "Peter West",
             "label": "Director of Finance"
         }, {
+            "name" : "Sarah Jones",
             "label": "Director of Human Resources"
         }]
     }, {
+        "name" : "Richard Easton",
         "label": "Vice President of Operations",
         "children": [{
+            "name" : "Amy Thomas",
             "label": "Director of Distribution"
         }, {
+            "name" : "Greg Li",
             "label": "Director of Customer Service",
             "children": [{
+                "name" : "Laronda Phillips",
                 "label": "Technical Support Manager"
             }]
         }]
     }, {
+        "name" : "Alice Ozaltin",
         "label": "Vice President of Merchandising",
         "children": [{
+            "name": "Zach Kwon",
             "label": "Director of Purchasing",
             "children": [
-                {"label": "Internal Purchasing Manager"}]
+                {
+                    "name": "Jonathan Branham",
+                    "label": "Internal Purchasing Manager"}]
         }, {
+            "name": "Elizabeth Norman",
             "label": "Director of Appliances"
         }, {
+            "name" : "Peter Stevens",
             "label": "Director of Clothing",
             "children": [{
+                "name": "Rebecca Hammond",
                 "label": "Womens Clothing Planner"
             }, {
+                "name": "Alex Kaplan",
                 "label": "Mens Clothing Planner"
             }]
         }, {
+            "name" : "Mark Hughes",
             "label": "Product Information Coordinator"
         }]
     }]

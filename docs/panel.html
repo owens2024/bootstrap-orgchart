@@ -18,11 +18,19 @@
 
 <body>
 <h1>Org Tree</h1>
-<div class="container-fluid">
-  <h2>Standard Tree</h2>
-	<div id="tree"></div>
-</div>
 
+<div class="container-fluid">
+  <h2>Example of Tree in a non-full width container</h2>
+  <div class="row">
+    <div class="col-lg-4">
+      <h3>Left panel</h3>
+    </div>
+    <div class="col-lg-8">
+      <div id="custom-tree"></div>
+    </div>
+  </div>
+  
+</div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
@@ -30,7 +38,8 @@ $(document).ready(function(){
   $.ajax({
   dataType: "json",
   url: "sample.json"}).done( function( data ) {
-    OrgTree.makeOrgTree($('#tree'), data);
+    OrgTree.setOptions({baseLevel: 8});
+    OrgTree.makeOrgTree($('#custom-tree'), data);
   });
 });
 </script>

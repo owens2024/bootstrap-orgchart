@@ -1,10 +1,10 @@
 /* global $ */
 var OrgTree = (function() {
     var publicAPI = {};
-
+    this.bootstrapGridBase = 12;
     this.options = {
         baseClass: 'org-tree',
-        baseLevel: 12,
+        baseLevel: this.bootstrapGridBase,
         minWidth: 2,
         renderNode: function(node){
             return `<div class="node center-block">
@@ -13,7 +13,7 @@ var OrgTree = (function() {
         }
     };
 
-    publicAPI.init = function(options) {
+    publicAPI.setOptions = function(options) {
         $.extend(this.options, options);
     }.bind(this);
 
@@ -21,9 +21,10 @@ var OrgTree = (function() {
         var base = $('<div class="' + this.options.baseClass + '">');
         var row = $('<div class="row">');
         var level = this.options.baseLevel;
+        var width = this.bootstrapGridBase;
 
         data.forEach(function(node) {
-            row.append(getNode(node, level, true, 12, 100));
+            row.append(getNode(node, width, true, level, 100));
         });
         base.append(row);
         $elem.append(base);
@@ -40,13 +41,14 @@ var OrgTree = (function() {
 
             var childRow = $('<div class="row">');
             baseCol = Math.floor(baseCol / node.children.length);
+            if(baseCol == 0) baseCol = 1;
             self.addClass('child-width-'+baseCol);
             self.append(makeNode(node, true, !noParent));
             if (baseCol < this.options.minWidth) {
-                sublevel = this.options.baseLevel;
+                sublevel = this.bootstrapGridBase;
             }
             else {
-                sublevel = Math.floor(this.options.baseLevel / node.children.length);
+                sublevel = Math.floor(this.bootstrapGridBase / node.children.length);
                 if (sublevel == 0) {
                     sublevel = 1;
                 }

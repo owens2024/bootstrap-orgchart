@@ -18,11 +18,11 @@
 
 <body>
 <h1>Org Tree</h1>
-<div class="container-fluid">
-  <h2>Standard Tree</h2>
-	<div id="tree"></div>
-</div>
 
+<div class="container-fluid">
+  <h2>Custom Tree</h2>
+  <div id="custom-tree"></div>
+</div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
@@ -30,7 +30,13 @@ $(document).ready(function(){
   $.ajax({
   dataType: "json",
   url: "sample.json"}).done( function( data ) {
-    OrgTree.makeOrgTree($('#tree'), data);
+    OrgTree.setOptions({renderNode: function(node) {
+      return `<div class="node center-block text-center">
+                        <strong>${node.name}</strong><br />
+                        <em>${node.label}</em>
+                    </div>`
+    }});
+    OrgTree.makeOrgTree($('#custom-tree'), data);
   });
 });
 </script>

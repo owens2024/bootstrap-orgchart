@@ -57,13 +57,28 @@ To override the defualt options call `OrgTree.setOptions(options)` where options
 is an object with any of the following properties.
 ```javascript
 {
-    "baseClass": "org-tree",
-    "baseLevel": 12,
-    "minWidth": 2,
-    "renderNode": function(node){
+    baseClass: "org-tree",
+    baseLevel: 12,
+    minWidth: 2,
+    collapsable: true,
+    renderNode: function(node){
         return `<div class="node center-block">
                     ${node.label}
+                    ${this.renderCollapseIcon(node)}
                 </div>`;
+    },
+    renderCollapseIcon: function(node){
+        if(this.collapsable && node.children && node.children.length > 0) {
+            return `<br />
+            <a href="#" class="collapse_node">
+                <i class="glyphicon glyphicon-minus-sign"></i>
+            </a>`;
+        } else {
+            return '';
+        }
+    },
+    toggleCollapseIcon: function(icon) {
+        $(icon).toggleClass('glyphicon-minus-sign glyphicon-plus-sign');
     }
 }
 ```
@@ -81,12 +96,25 @@ currently known issues with responsiveness in values other than 12.
 This is the minimum Bootstrap Grid column width to contain a single node. Once
 the tree splits to this width, it will take a vertical layout.
 
+#### collapsable
+Defaults to true. If set to false, the nodes will not be able to be collapsed.
+
 #### renderNode
 `renderNode(node)` returns the HTML for an individual node. Additional fields
 may be specified in the structure that can be referenced in the function.  See
 [Custom Demo](custom.html) for an example.  Note, if you change the node width it
 is best to change the `$node-width` variable in orgchart.scss and to recompile
-the CSS.
+the CSS.  You can place the collapse icon by inserting `${this.renderCollapseIcon(node)}`
+
+#### renderCollapseIcon
+`renderCollapseIcon(node)` renders the collapse icon for a specific node. If you 
+decide to provide a custom function here be sure to handle the cases where collapse
+is false and when there are no child nodes.
+
+#### toggleCollapseIcon
+This function is called when the collapse icon is clicked and is used to toggle
+the icon.  Other functionality does the work of actually hiding the child nodes.
+
 
 ### OrgTree.makeOrgTree
 To render the tree, call `OrgTree.makeOrgTree(element, data)` where element is 
@@ -99,5 +127,6 @@ Known Issues
 
 To-dos
 ------
-* Enable node collapsing
+* Wide and narrow tree cases/samples
+* Automated test cases
 

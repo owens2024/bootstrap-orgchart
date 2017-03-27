@@ -9,7 +9,7 @@ This code uses JS to create a basic DOM structure from a simple JSON object that
 
 Demo
 ----
-[Demos](https://owens2024.github.io/bootstrap-orgchart/sample.html)
+[Demos](https://owens2024.github.io/bootstrap-orgchart/)
 
 Requirements
 ------------
@@ -18,11 +18,14 @@ Requirements
 
 Usage
 -----
+### Quick Start
 - Include orgchart.js and orgchart.css on your site. (or customize the orgchart.scss)
 - Call OrgTree.makeOrgTree(element, data)
 - element must be a jQuery reference to the element you want to contain the chart
 - Data is an object with a label and children
+- [More Documentation](https://owens2024.github.io/bootstrap-orgchart/)
 
 To-dos
 ------
-* Enable node collapsing
+- Wide and narrow examples
+- Unit tests

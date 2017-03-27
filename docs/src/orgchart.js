@@ -1,15 +1,34 @@
-/* global $ */
+/* OrgChart.js 0.8
+Author Lee Owens 
+https://owens2024.github.io/bootstrap-orgchart/ 
+*/
 var OrgTree = (function() {
     var publicAPI = {};
     this.bootstrapGridBase = 12;
+    
     this.options = {
         baseClass: 'org-tree',
         baseLevel: this.bootstrapGridBase,
         minWidth: 2,
+        collapsable: true,
         renderNode: function(node){
             return `<div class="node center-block">
                         ${node.label}
+                        ${this.renderCollapseIcon(node)}
                     </div>`;
+        },
+        renderCollapseIcon: function(node){
+            if(this.collapsable && node.children && node.children.length > 0) {
+                return `<br />
+                <a href="#" class="collapse_node">
+                    <i class="glyphicon glyphicon-minus-sign"></i>
+                </a>`;
+            } else {
+                return '';
+            }
+        },
+        toggleCollapseIcon: function(icon) {
+            $(icon).toggleClass('glyphicon-minus-sign glyphicon-plus-sign');
         }
     };
 
@@ -28,7 +47,18 @@ var OrgTree = (function() {
         });
         base.append(row);
         $elem.append(base);
+        bindCollapse();
     }.bind(this);
+    
+    function bindCollapse(){
+        if(this.options.collapsable) {
+            $(document).on('click.orgchart.collapse', '.collapse_node', $.proxy(function(ev){
+                $(ev.target).parents(".item:first").find(".row").toggle();
+                $(ev.target).parents(".parent").toggleClass("collapsed");
+                this.options.toggleCollapseIcon(ev.target);
+            }, this));
+        }
+    }
 
     function getNode(node, level, noParent, baseCol, width) {
         var sublevel,

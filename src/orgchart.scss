@@ -61,7 +61,7 @@ $node-width: 140px;
         position: relative;
         display: flex;
         margin-bottom: $node-margin;
-        &::after {
+        &:not(.collapsed):after {
             // Builds the line down to children 
             @include line;
             width: $line-width;
@@ -161,7 +161,7 @@ $node-width: 140px;
                     .parent {
                         margin-bottom: 0px;
                         display: block;
-                        &:before {
+                        &:not(.collapsed):before {
                             @include list-line-top
                         }
                     }

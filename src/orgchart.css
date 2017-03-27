@@ -11,7 +11,7 @@
   position: relative;
   display: flex;
   margin-bottom: 20px; }
-  .org-tree .parent::after {
+  .org-tree .parent:not(.collapsed):after {
     content: '';
     position: absolute;
     background-color: #aaa;
@@ -105,7 +105,7 @@
   .org-tree .child-width-1 .parent {
     margin-bottom: 0px;
     display: block; }
-    .org-tree .child-width-1 .parent:before {
+    .org-tree .child-width-1 .parent:not(.collapsed):before {
       content: '';
       position: absolute;
       background-color: #aaa;
@@ -172,7 +172,7 @@
   .org-tree .child-width-1 .parent {
     margin-bottom: 0px;
     display: block; }
-    .org-tree .child-width-1 .parent:before {
+    .org-tree .child-width-1 .parent:not(.collapsed):before {
       content: '';
       position: absolute;
       background-color: #aaa;
@@ -238,7 +238,7 @@
   .org-tree .child-width-2 .parent {
     margin-bottom: 0px;
     display: block; }
-    .org-tree .child-width-2 .parent:before {
+    .org-tree .child-width-2 .parent:not(.collapsed):before {
       content: '';
       position: absolute;
       background-color: #aaa;
@@ -305,7 +305,7 @@
   .org-tree .child-width-1 .parent {
     margin-bottom: 0px;
     display: block; }
-    .org-tree .child-width-1 .parent:before {
+    .org-tree .child-width-1 .parent:not(.collapsed):before {
       content: '';
       position: absolute;
       background-color: #aaa;
@@ -371,7 +371,7 @@
   .org-tree .child-width-2 .parent {
     margin-bottom: 0px;
     display: block; }
-    .org-tree .child-width-2 .parent:before {
+    .org-tree .child-width-2 .parent:not(.collapsed):before {
       content: '';
       position: absolute;
       background-color: #aaa;
@@ -437,7 +437,7 @@
   .org-tree .child-width-3 .parent {
     margin-bottom: 0px;
     display: block; }
-    .org-tree .child-width-3 .parent:before {
+    .org-tree .child-width-3 .parent:not(.collapsed):before {
       content: '';
       position: absolute;
       background-color: #aaa;
@@ -503,7 +503,7 @@
   .org-tree .child-width-4 .parent {
     margin-bottom: 0px;
     display: block; }
-    .org-tree .child-width-4 .parent:before {
+    .org-tree .child-width-4 .parent:not(.collapsed):before {
       content: '';
       position: absolute;
       background-color: #aaa;
